@@ -28,8 +28,8 @@ function paintToCanvas(){
         let pixels = ctx.getImageData(0, 0, width, height); // pixels will be reassigned to different colors, variable needs to be 'let'
         
         //mess with pixels
-        const redbutton = document.querySelector('.red');
-        redbutton.addEventListener('click', function(){return pixels = redEffect(pixels)});
+   
+
         //pixels = redEffect(pixels);
         //pixels = rgbSplit(pixels);
         //ctx.globalAlpha = 0.8; // stacks the frames for a blur effect
@@ -40,8 +40,8 @@ function paintToCanvas(){
         ctx.putImageData(pixels, 0, 0);
 
         //reset pixels
-        const resetbutton = document.querySelector('.reset');
-        resetbutton.addEventListener('click', pixels = clearEffects(pixels));
+
+        
     }, 16);
 }
 
