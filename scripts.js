@@ -6,6 +6,10 @@ const snap = document.querySelector('.snap');
 
 document.getElementById('original').checked = true;
 
+const greenScreenToggle = document.getElementById('greenscreen');
+const sliders = document.getElementById('sliders');
+
+
 function getVideo(){
     navigator.mediaDevices.getUserMedia({ video: true, audio: false })
     .then(localMediaStream => {
@@ -46,20 +50,9 @@ function paintToCanvas(){
         if(document.getElementById('original').checked){
             pixels = clearEffects(pixels);
         }
-        
-        
-        
-        
-        
-        
-        
-
 
         //puts pixels back
         ctx.putImageData(pixels, 0, 0);
-
-        //reset pixels
-
         
     }, 16);
 }
@@ -87,6 +80,8 @@ function clearEffects(pixels){
             pixels.data[i+2] = pixels.data[i+2]; // b
             //don't need to change a
      }
+     document.querySelector('.rgb').style.display = "none"; // greenscreen sliders not visible by default
+
     return pixels;
 }
 
@@ -96,8 +91,10 @@ function redEffect(pixels){
     for(let i=0; i < pixels.data.length; i+=4){
         pixels.data[i+0] = pixels.data[i+0] + 75; // r
         pixels.data[i+1] = pixels.data[i+1] - 70;  // g
-        pixels.data[i+2] = pixels.data[i+2] + 75; // b        
+        pixels.data[i+2] = pixels.data[i+2] + 75; // b          
     }
+    document.querySelector('.rgb').style.display = "none"; // greenscreen sliders not visible by default
+
     return pixels;
 }
 
@@ -108,6 +105,8 @@ function rgbSplit(pixels){
         pixels.data[i-500] = pixels.data[i+2]; // b
         //don't need to change a
     }
+    document.querySelector('.rgb').style.display = "none"; // greenscreen sliders not visible by default
+
     return pixels;
 }
 
@@ -134,12 +133,15 @@ function greenScreen(pixels){
                 //take it out!
                 pixels.data[i+3]=0;
             }
-
+    
+        
+        
     }
-
+    document.querySelector('.rgb').style.display = "block";
     return pixels;
     
 }
+document.querySelector('.rgb').style.display = "none"; // greenscreen sliders not visible by default
 
 getVideo();
 
