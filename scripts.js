@@ -4,6 +4,8 @@ const ctx = canvas.getContext('2d');
 const strip = document.querySelector('.strip');
 const snap = document.querySelector('.snap');
 
+document.getElementById('original').checked = true;
+
 function getVideo(){
     navigator.mediaDevices.getUserMedia({ video: true, audio: false })
     .then(localMediaStream => {
@@ -28,12 +30,29 @@ function paintToCanvas(){
         let pixels = ctx.getImageData(0, 0, width, height); // pixels will be reassigned to different colors, variable needs to be 'let'
         
         //mess with pixels
-   
+        if(document.getElementById('red').checked){
+            pixels = redEffect(pixels);
+        }
 
-        //pixels = redEffect(pixels);
-        //pixels = rgbSplit(pixels);
-        //ctx.globalAlpha = 0.8; // stacks the frames for a blur effect
-        //pixels = greenScreen(pixels);
+        if(document.getElementById('rgb').checked){
+            pixels = rgbSplit(pixels);
+            ctx.globalAlpha = 0.8; // stacks the frames for a blur effect
+        }
+
+        if(document.getElementById('greenscreen').checked){
+            pixels = greenScreen(pixels);
+        }
+
+        if(document.getElementById('original').checked){
+            pixels = clearEffects(pixels);
+        }
+        
+        
+        
+        
+        
+        
+        
 
 
         //puts pixels back
