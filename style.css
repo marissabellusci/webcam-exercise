@@ -7,8 +7,8 @@ html {
   }
   
   html {
-    font-size: 10px;
-    background: #ffc600;
+    font-size: 15px;
+    background: #b3ebc5;
   }
   
   .photobooth {
@@ -17,6 +17,11 @@ html {
     margin: 2rem auto;
     border-radius: 2px;
   }
+
+  .controls {
+    background: #b3ebc5;
+  }
+  
   
   /*clearfix*/
   .photobooth:after {
